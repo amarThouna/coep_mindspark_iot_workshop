@@ -13,8 +13,8 @@ char propertyName[]="distance";
 int timeBetweenRefresh = 1000; //refresh interval in milliseconds
 unsigned long lastConnectionTime = 0;
 
-const int trigPin = 2; 
-const int echoPin = 3;
+const int trigPin = 3; 
+const int echoPin = 2;
 float duration, distance;
 
 void setup() {
