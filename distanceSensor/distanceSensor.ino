@@ -13,17 +13,20 @@ char propertyName[]="distance";
 int timeBetweenRefresh = 1000; //refresh interval in milliseconds
 unsigned long lastConnectionTime = 0;
 
-const int trigPin = 3; 
-const int echoPin = 2;
-float duration, distance;
+const int echoPin = 2; 
+const int trigPin = 3;  
+int duration;
+float distance;
 
 void setup() {
   Serial.begin(9600);
+  //initializing ethernet
   Serial.println("Trying to get an IP address using DHCP");
   Ethernet.begin(mac);      //Initialize the ethernet with the provided MAC. Ethernet sheild will also get an IP thought DHCP
   Serial.print("My IP address: ");
   Serial.print(Ethernet.localIP());
   Serial.println();
+  //initializing arduino pins
   pinMode(trigPin, OUTPUT);
   pinMode(echoPin, INPUT);
 }
@@ -48,7 +51,7 @@ void updateSensorsValue(){
     distance = (duration*.0343)/2;
     Serial.print("Distance: ");
     Serial.println(distance);
-    delay(500);
+    delay(500); // waiting for .5 sec
 }
 
 void updateValues()
