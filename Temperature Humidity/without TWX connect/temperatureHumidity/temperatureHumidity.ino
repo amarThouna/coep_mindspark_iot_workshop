@@ -15,7 +15,7 @@ void setup() {
   delay(delayPeriod);           //wait 3 seconds
   Serial.println("Temperature and Humidity are");//Debug prints. See on Serial monitor. Got to Tools-->Serial Monitor in Ardiuno IDE. Select 9600
   Serial.println("T(C) \tH(%)");                   //
-  dht.begin();           //initialize the Serial communication
+  dht.begin();           
 }
 
 /*loop*/

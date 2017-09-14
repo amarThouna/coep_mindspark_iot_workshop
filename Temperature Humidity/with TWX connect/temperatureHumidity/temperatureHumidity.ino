@@ -12,11 +12,11 @@ DHT dht(DHTPIN, DHTTYPE);//create an instance of DHT
 #include <Ethernet.h> 
 byte mac[] = {0xDE, 0xAD, 0xBE, 0xEF, 0xFE, 0xED};  
 EthernetClient client; 
-char server[] = "10.192.37.229"; //Thingworx server hostname. Change this to your server 
-int port=8080; //Thingworx server port. 
-char appKey[] = "<<App_Key>>"; //App key you created 
-char thingName[] = "THThing"; //Thing Name you created for getting sensor value 
-char serviceName[] = "setTH"; //service name 
+char server[] = "server"; //ThingWorx server hostname. Change this to your server
+int port=8080; //ThingWorx server port. Change as per your server port
+char appKey[] = "<your_app-key>"; //App key you created
+char thingName[] = "THThing"; //Thing Name Should match your thing in ThingWorx 
+char serviceName[] = "setTH"; //service name should be same exist in the Thing Name you specified
 char propertyName1[]="temperature"; 
 char propertyName2[]="humidity"; 
  
@@ -38,18 +38,17 @@ void setup() {
   delay(delayPeriod);           //wait 3 seconds
   Serial.println("Temperature and Humidity are");//Debug prints. See on Serial monitor. Got to Tools-->Serial Monitor in Ardiuno IDE. Select 9600
   Serial.println("T(C) \tH(%)");                   //
-  dht.begin();           //initialize the Serial communication
+  dht.begin(); 
 }
 
 /*loop*/
 void loop() {
     if (millis() - lastConnectionTime > timeBetweenRefresh){ 
-    updateValues();   //uploading data to Thingworx 
+    updateValues();   //uploading data to ThingWorx 
   }     
   else{ 
     updateSensorsValue(); //updating senror data locally 
   }
- 
 }
 
 void updateSensorsValue(){ 
@@ -71,7 +70,7 @@ void updateValues()
   if (client.connect(server, port)) {   
       if(client.connected()){ 
         // Sending a header of a network packet   
-        Serial.println("Sending data to Thingworx Server...\n");   
+        Serial.println("Sending data to ThingWorx Server...\n");   
         Serial.print("POST /Thingworx/Things/");  client.print("POST /Thingworx/Things/");  
         Serial.print(thingName);  client.print(thingName);   
         Serial.print("/Services/");  client.print("/Services/");   
@@ -88,9 +87,7 @@ void updateValues()
         Serial.print("&");  client.print("&");   
         Serial.print(propertyName1); client.print(propertyName1);   
         Serial.print("=");  client.print("="); 
-        Serial.print(t);  client.print(t);   
-
-  
+        Serial.print(t);  client.print(t);     
          
         Serial.println(" HTTP/1.1");  client.println(" HTTP/1.1");   
         Serial.println("Accept: application/json");  client.println("Accept: application/json");   
