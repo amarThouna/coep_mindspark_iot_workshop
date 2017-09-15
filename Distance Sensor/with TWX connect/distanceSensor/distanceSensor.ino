@@ -13,7 +13,7 @@ EthernetClient client;
 char server[] = "server"; //ThingWorx server hostname. Change this to your server
 int port=8080; //ThingWorx server port. Change as per your server port
 char appKey[] = "<your_app-key>"; //App key you created
-char thingName[] = "<DistenceSensor_<username>>"; //Thing Name Should match your thing in ThingWorx
+char thingName[] = "<DistanceSensor_<username>>"; //Thing Name Should match your thing in ThingWorx
 char serviceName[] = "setDistance"; //service name should be same exist in the Thing Name you specified
 char propertyName[]="distance";
 
