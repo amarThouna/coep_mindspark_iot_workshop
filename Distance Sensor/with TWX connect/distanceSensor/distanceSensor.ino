@@ -23,7 +23,7 @@ unsigned long lastConnectionTime = 0;
 void setup() {
   Serial.begin(9600);
   
-  Serial.print("initializing ethernet");
+  Serial.println("initializing ethernet");
   Serial.println("Trying to get an IP address using DHCP");
   Ethernet.begin(mac);      //Initialize the ethernet with the provided MAC. Ethernet sheild will also get an IP thought DHCP
   Serial.print("My IP address: ");

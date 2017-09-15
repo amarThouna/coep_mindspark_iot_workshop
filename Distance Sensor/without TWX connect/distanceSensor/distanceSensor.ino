@@ -7,7 +7,7 @@ float distance;
 void setup() {
   Serial.begin(9600);
   
-  Serial.print("initializing arduino pins");
+  Serial.println("initializing arduino pins");
   pinMode(trigPin, OUTPUT);
   pinMode(echoPin, INPUT);
 }
